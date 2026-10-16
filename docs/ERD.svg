@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#333"/></marker></defs>
+<rect width="1200" height="900" fill="white"/>
+<text x="600" y="40" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold">RaceDay — Entity Relationship Diagram</text>
+
+<!-- Roles -->
+<g font-family="Arial"><rect x="70" y="100" width="240" height="130" rx="8" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+<text x="190" y="130" text-anchor="middle" font-size="20" font-weight="bold">Roles</text>
+<text x="90" y="160" font-size="15">PK RoleId</text><text x="90" y="185" font-size="15">RoleName (UNIQUE)</text><text x="90" y="210" font-size="15">1 ─── M Users</text></g>
+
+<!-- Users -->
+<g font-family="Arial"><rect x="430" y="80" width="300" height="210" rx="8" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+<text x="580" y="110" text-anchor="middle" font-size="20" font-weight="bold">Users</text>
+<text x="450" y="140" font-size="15">PK UserId</text><text x="450" y="165" font-size="15">FirstName, LastName</text><text x="450" y="190" font-size="15">Email (UNIQUE)</text><text x="450" y="215" font-size="15">PasswordHash</text><text x="450" y="240" font-size="15">FK RoleId</text><text x="450" y="265" font-size="15">CreatedAt</text></g>
+
+<!-- Events -->
+<g font-family="Arial"><rect x="820" y="80" width="300" height="210" rx="8" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+<text x="970" y="110" text-anchor="middle" font-size="20" font-weight="bold">Events</text>
+<text x="840" y="140" font-size="15">PK EventId</text><text x="840" y="165" font-size="15">FK OrganiserId</text><text x="840" y="190" font-size="15">Title</text><text x="840" y="215" font-size="15">Description</text><text x="840" y="240" font-size="15">Location</text><text x="840" y="265" font-size="15">EventDate</text></g>
+
+<!-- Categories -->
+<g font-family="Arial"><rect x="820" y="390" width="300" height="190" rx="8" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+<text x="970" y="420" text-anchor="middle" font-size="20" font-weight="bold">Categories</text>
+<text x="840" y="450" font-size="15">PK CategoryId</text><text x="840" y="475" font-size="15">FK EventId</text><text x="840" y="500" font-size="15">CategoryName</text><text x="840" y="525" font-size="15">DistanceKm</text><text x="840" y="550" font-size="15">EntryFee</text></g>
+
+<!-- Routes -->
+<g font-family="Arial"><rect x="440" y="390" width="300" height="190" rx="8" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+<text x="590" y="420" text-anchor="middle" font-size="20" font-weight="bold">Routes</text>
+<text x="460" y="450" font-size="15">PK RouteId</text><text x="460" y="475" font-size="15">FK CategoryId (UNIQUE)</text><text x="460" y="500" font-size="15">GpxDataUrl</text><text x="460" y="525" font-size="15">ElevationGainMeters</text><text x="460" y="550" font-size="15">StartCoordinates</text></g>
+
+<!-- Enrolments -->
+<g font-family="Arial"><rect x="70" y="390" width="300" height="190" rx="8" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+<text x="220" y="420" text-anchor="middle" font-size="20" font-weight="bold">Enrolments</text>
+<text x="90" y="450" font-size="15">PK EnrolmentId</text><text x="90" y="475" font-size="15">FK ParticipantId</text><text x="90" y="500" font-size="15">FK CategoryId</text><text x="90" y="525" font-size="15">EnrolmentDate</text><text x="90" y="550" font-size="15">EmergencyContact</text></g>
+
+<!-- Results -->
+<g font-family="Arial"><rect x="440" y="680" width="300" height="170" rx="8" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+<text x="590" y="710" text-anchor="middle" font-size="20" font-weight="bold">Results</text>
+<text x="460" y="740" font-size="15">PK ResultId</text><text x="460" y="765" font-size="15">FK EnrolmentId (UNIQUE)</text><text x="460" y="790" font-size="15">FinishTimeMs</text><text x="460" y="815" font-size="15">OverallPlacement</text><text x="460" y="840" font-size="15">RecordedAt</text></g>
+
+<!-- Relationships -->
+<g stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrow)">
+<path d="M310 165 L430 165"/>
+<path d="M730 175 L820 175"/>
+<path d="M970 290 L970 390"/>
+<path d="M820 485 L740 485"/>
+<path d="M820 525 L370 525"/>
+<path d="M220 580 L520 680"/>
+<path d="M580 580 L590 680"/>
+</g>
+<g font-family="Arial" font-size="14" fill="#333">
+<text x="355" y="150">1 : M</text><text x="760" y="160">1 : M</text><text x="985" y="345">1 : M</text>
+<text x="765" y="470">1 : 1</text><text x="560" y="515">1 : M</text><text x="345" y="635">1 : M</text><text x="610" y="630">1 : 0..1</text>
+</g>
+</svg>

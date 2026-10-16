@@ -1,0 +1,52 @@
+name: Validate Part 1 Documentation
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  validate-structure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check docs folder
+        run: |
+          test -d docs || {
+            echo "Error: docs directory does not exist."
+            exit 1
+          }
+
+      - name: Validate required documentation files
+        run: |
+          test -f docs/ERD.svg || {
+            echo "Error: docs/ERD.svg is missing."
+            exit 1
+          }
+
+          test -f docs/EndpointPlan.md || {
+            echo "Error: docs/EndpointPlan.md is missing."
+            exit 1
+          }
+
+          test -f docs/schema.sql || {
+            echo "Error: docs/schema.sql is missing."
+            exit 1
+          }
+
+          echo "All required Part 1 documentation files are present."
+
+      - name: Basic SQL file validation
+        run: |
+          grep -q "CREATE TABLE dbo.Roles" docs/schema.sql
+          grep -q "CREATE TABLE dbo.Users" docs/schema.sql
+          grep -q "CREATE TABLE dbo.Events" docs/schema.sql
+          grep -q "CREATE TABLE dbo.Categories" docs/schema.sql
+          grep -q "CREATE TABLE dbo.Routes" docs/schema.sql
+          grep -q "CREATE TABLE dbo.Enrolments" docs/schema.sql
+          grep -q "CREATE TABLE dbo.Results" docs/schema.sql
+          echo "Schema contains all 7 required entities."
