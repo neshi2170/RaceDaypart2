@@ -132,9 +132,4 @@ The key in `appsettings.json` is for local development only. Replace it with a l
 5. Set `RaceDay.Api` as the startup project and press **F5**. Swagger should open. If it does not, browse to `https://localhost:7190/swagger` or use the URL shown in the Output window.
 6. To run tests, choose **Test → Run All Tests** in Visual Studio, or run `dotnet test` in a terminal from the folder containing `RaceDay.sln`.
 
-### Important setup notes
 
-- Register new test accounts through `POST /api/auth/register`; the mock password hashes in the SQL seed data are placeholders and cannot be used to log in.
-- The development JWT key is for local coursework testing only. Do not deploy it to a public production service.
-- If the database already exists with an older schema, rerun the updated `docs/schema.sql` after backing up anything important. EF Core `EnsureCreated()` does not upgrade existing tables.
-- I corrected the C# LocalDB connection-string escape issue in `Program.cs`. Run the build and tests on your computer before submitting, because the .NET SDK is not available in this file-generation environment.
